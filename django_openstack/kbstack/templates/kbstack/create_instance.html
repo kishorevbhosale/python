@@ -1,0 +1,33 @@
+{% extends 'kbstack/index.html' %}
+
+
+
+{% block body %}
+
+    <form class="form-signin" method="post" action="{% url 'create_instance' %}" >
+          {% csrf_token %}
+        <center><h2 class="form-create-Instance-heading">Create Instance</h2></center>
+
+        Instance Name : <br><input type="text" class="form-control" name="instance" placeholder="Instance_Name"  required="" autofocus="" /><br>
+
+        Image Name :    <br><select name="image">
+
+
+                                {% for i in image %}
+                                    <option value="{{ i.id }}">{{ i.name }}</option>
+                                {% endfor %}
+                        </select>
+        <br>
+        <br>
+
+        Flavor Name :   <br> <select id="flavor" name="flavor">
+                                {% for i in flavor %}
+                                    <option value="{{i.id}}">{{i.name}}</option>
+                                {% endfor %}
+                        </select>
+        <br>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Launch</button>
+    </form>
+
+{%  endblock %}
